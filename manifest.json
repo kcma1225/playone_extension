@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Playone_hacker",
+  "description": "mulit plugins for PLAYONE",
+  "version": "1.0.0",
+  "permissions": [ "cookies", "scripting", "activeTab", "storage"],
+  "host_permissions": [ "<all_urls>"],
+
+  "action": {
+    "default_popup": "popup.html",
+    "defualt_icon" : {"32" : "/assets/icon/icon32.png"}
+  }
+}

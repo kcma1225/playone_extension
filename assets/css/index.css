@@ -1,0 +1,60 @@
+/* 標題樣式 */
+h1 {
+    text-align: center; /* 文字置中 */
+    color: #666666; /* 文字顏色 */
+    white-space: nowrap; /* 文字不換行 */
+}
+
+/* 表格樣式 */
+table {
+    margin: 20px auto; /* 水平置中，增加上下間距 */
+    border-collapse: collapse; /* 合併邊框 */
+}
+
+td {
+    text-align: center; /* 將文本置中 */
+}
+
+p {
+    font-weight: bold;
+    margin: 0; /* 清除預設邊距 */
+    font-size: 1.2em;
+}
+
+/* 表單樣式 */
+form {
+    max-width: 600px; /* 最大寬度，調寬 */
+    margin: 20px auto; /* 水平置中 */
+    padding: 20px; /* 區塊填充 */
+    background-color: #f9f9f9; /* 背景顏色 */
+    border-radius: 5px; /* 圓角 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 陰影效果 */
+}
+
+label {
+    display: block; /* 單行顯示 */
+    margin-bottom: 10px; /* 底部間距 */
+}
+
+select, input[type="number"] {
+    width: calc(100% - 20px); /* 寬度100%，減去填充 */
+    padding: 8px; /* 區塊填充 */
+    margin-bottom: 10px; /* 底部間距 */
+    border: 1px solid #ccc; /* 邊框 */
+    border-radius: 5px; /* 圓角 */
+    box-sizing: border-box; /* 盒模型 */
+}
+
+button[type="submit"] {
+    width: calc(100% - 20px); /* 寬度100%，減去填充 */
+    padding: 10px; /* 按鈕填充 */
+    background-color: #007bff; /* 按鈕背景顏色 */
+    color: #fff; /* 文字顏色 */
+    border: none; /* 移除邊框 */
+    border-radius: 5px; /* 圓角 */
+    cursor: pointer; /* 鼠標樣式 */
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3; /* 滑鼠懸停時的背景顏色 */
+}

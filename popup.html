@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
+    <title>PLAYONE 送禮物腳本</title>
+</head>
+<body>
+    <h1>PLAYONE 送禮物腳本</h1>
+    <table>
+        <tr>
+            <td id="t1">當前網站瀏覽狀態：<p id="p1"></p></td>
+        </tr>
+        <tr>
+            <td id="t2">登入狀況：<p id="p2"></p></td>
+        </tr>
+        <tr>
+            <td id="t3">語音頻道狀態：<p id="p3"></p></td>
+        </tr>
+        <tr>
+            <td id="t4"><p id="p4"></p></td>
+        </tr>
+    </table>
+    <form>
+        <div>
+            <label for="giftSelect">禮物選擇</label>
+            <select id="giftSelect"></select>
+
+            <label for="receiverSelect">送禮人選擇</label>
+            <select id="receiverSelect"></select>
+        </div>
+        <div>
+            <label for="quantityInput">輸入數字：</label>
+            <input type="number" id="quantityInput" name="quantity" min="1">
+        </div>
+        <button type="submit">確認送出</button>
+    </form>
+
+
+    <script src="./popup.js" type="module"></script>
+</body>
+</html>
