@@ -7,7 +7,11 @@
   "host_permissions": [ "<all_urls>"],
 
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "popup/popup.html",
     "defualt_icon" : {"32" : "/assets/icon/icon32.png"}
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module" 
   }
 }

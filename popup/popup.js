@@ -16,7 +16,7 @@ const giftSelect = document.getElementById("giftSelect");
 //basic variable
 const fail_color = "#ED2939"
 const success_color = "#5cb85c"
-const check_url_name = "playone"
+const check_url_name = "goplayone.com"
 let cookiesMap = {}
 var room_id , category
 
@@ -28,36 +28,12 @@ t2.style.display = 'none'
 t3.style.display = 'none'
 giftSelect.innerHTML = '';
 
+//testing data
 const giftOptions = {
   gift1: "禮物一",
   gift2: "禮物二",
   gift3: "禮物三"
 };
-
-function fetchGiftList(userToken, userId) {
-  fetch('https://api.goplayone.com/api/gift/v3/list', {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'User-Token': userToken,
-      'User-Id': userId
-    }
-  })
-    .then(response => response.json())
-    .then(data => {
-      const organizedData = data.data.hot.map(gift => {
-        return {
-          id: gift.id,
-          name: gift.name,
-          price: gift.price,
-        };
-      });
-
-      console.log(organizedData);
-    })
-    .catch(error => console.error('Error:', error));
-}
-
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -115,14 +91,45 @@ document.addEventListener('DOMContentLoaded', function () {
         //--------------------------------------------------
 
         form.style.display = 'block'
-        fetchGiftList(cookiesMap['USER_ID'], cookiesMap['USER_TOKEN'])
-        /*for (const value in fetchGiftList(cookiesMap['USER_ID'], cookiesMap['USER_TOKEN'])) {
-          //t4.textContent = value
-          //const option = document.createElement("option");
-          //option.value = value.id;
-          //option.textContent = giftOptions[value.id];
-          //giftSelect.appendChild(option); 
-      }*/
+
+        // ================================= <gift list> =============================
+        chrome.runtime.sendMessage({
+          type: 'get_list',
+          u_id: cookiesMap['USER_ID'].value,
+          u_token: cookiesMap['USER_TOKEN'].value
+        }, function(r) {
+          
+          r.result.forEach(function(gift){
+            var option = document.createElement('option');
+            option.value = gift[0].id; // 設置選項的值為禮物的id
+            option.textContent = gift[0].name; // 設置選項的顯示文字為禮物的名稱
+            giftSelect.appendChild(option); // 將選項新增到select元素中
+        })
+      });
+
+        // ================================= </gift list> =============================
+
+        document.querySelector('form').addEventListener('submit', function(event) {
+          // 防止表單默認提交行為
+          event.preventDefault();
+  
+          // 獲取表單中的資料
+          const giftSelectValue = document.getElementById('giftSelect').value;
+          const receiverSelectValue = document.getElementById('receiverSelect').value;
+          const quantityInputValue = document.getElementById('quantityInput').value;
+  
+          // 發送訊息給 background.js
+          chrome.runtime.sendMessage({
+              type: 'formSubmitted',
+              gift: giftSelectValue,
+              receiver: receiverSelectValue,
+              quantity: quantityInputValue,
+              u_id: cookiesMap['USER_ID'].value,
+              u_token: cookiesMap['USER_TOKEN'].value,
+          }, function(r) {
+              p4.textContent = giftSelect.value
+          });
+      });
         
       });
   });
