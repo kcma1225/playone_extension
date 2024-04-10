@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="/assets/css/index.css">
-    <title>PLAYONE 送禮物腳本</title>
+    <title>PLAYONE plugins</title>
 </head>
 <body>
-    <h1>PLAYONE 送禮物腳本</h1>
+    <h1>PLAYONE 輔助工具</h1>
     <table>
         <tr>
             <td id="t1">當前網站瀏覽狀態：<p id="p1"></p></td>
@@ -19,9 +19,6 @@
         <tr>
             <td id="t3">語音頻道狀態：<p id="p3"></p></td>
         </tr>
-        <tr>
-            <td id="t4"><p id="p4"></p></td>
-        </tr>
     </table>
     <form>
         <div>
@@ -29,16 +26,26 @@
             <select id="giftSelect"></select>
 
             <label for="receiverSelect">送禮人選擇</label>
-            <select id="receiverSelect"></select>
+            <select id="receiverSelect">
+                <option value = "none">(無 或請自行輸入)</option>
+            </select>
+
+            <button type="button" id="addInputButton">多位使用者(自行輸入ID)</button>
+            <div id="inputContainer"></div>
         </div>
         <div>
             <label for="quantityInput">送禮數量：</label>
             <input type="number" id="quantityInput" name="quantity" min="1">
+            <button id="fillQuantity">10</button>
         </div>
-        <button type="submit">確認送出</button>
+        <button type="submit" id="submitButton">確認送出</button>
     </form>
 
+    <tr>
+        <td id="t4"><p id="p4"></p></td>
+    </tr>
 
     <script src="./popup.js" type="module"></script>
+    <script src="../assets/js/get_input.js" type="module"></script>
 </body>
 </html>

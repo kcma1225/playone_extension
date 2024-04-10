@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Playone_hacker",
+  "name": "Playone_plugins",
   "description": "mulit plugins for PLAYONE",
   "version": "1.0.0",
   "permissions": [ "cookies", "scripting", "activeTab", "storage"],

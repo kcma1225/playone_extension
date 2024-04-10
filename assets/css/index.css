@@ -39,7 +39,7 @@ label {
 select, input[type="number"] {
     width: calc(100% - 20px); /* 寬度100%，減去填充 */
     padding: 8px; /* 區塊填充 */
-    margin-bottom: 10px; /* 底部間距 */
+    margin-bottom: 20px; /* 底部間距 */
     border: 1px solid #ccc; /* 邊框 */
     border-radius: 5px; /* 圓角 */
     box-sizing: border-box; /* 盒模型 */
@@ -57,4 +57,54 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #0056b3; /* 滑鼠懸停時的背景顏色 */
+}
+
+
+/* 按鈕樣式 */
+button[type="button"] {
+    padding: 10px 8px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px; /* 讓按鈕間距更合適 */
+    margin-top:-18px;
+    margin-bottom: 20px;
+}
+
+/* 刪除按鈕顏色 */
+button.delete {
+    background-color: #f44336;
+    margin-bottom: 10px;
+    color: white;
+    border: none;
+    border: none;
+    border-radius: 4px;
+}
+
+button#fillQuantity{
+    padding: 6px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+input[type="number"]{
+    margin-bottom: 0px;
+}
+
+/* 輸入框樣式 */
+input[type="text"] {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    margin-bottom: 4px; /* 讓輸入框與按鈕之間有些間距 */
+    margin-top: -8px
+}
+
+#inputContainer {
+    margin-bottom: 20px;
 }
