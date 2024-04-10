@@ -8,7 +8,7 @@
 
   "action": {
     "default_popup": "popup/popup.html",
-    "defualt_icon" : {"32" : "/assets/icon/icon32.png"}
+    "default_icon" : "assets/icon/icon.png"
   },
   "background": {
     "service_worker": "background.js",

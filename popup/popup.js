@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
         // ================================= <receiver list> =============================
-        
         chrome.runtime.sendMessage({
           type: 'get_members_list',
           room_id: room_id,
@@ -189,6 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
               
               u_id: cookiesMap['USER_ID'].value,
               u_token: cookiesMap['USER_TOKEN'].value,
+              room_id: room_id
           }, function(r) {
               p4.textContent = r.result
           });
