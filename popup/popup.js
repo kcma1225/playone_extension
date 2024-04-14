@@ -190,7 +190,15 @@ document.addEventListener('DOMContentLoaded', function () {
               u_token: cookiesMap['USER_TOKEN'].value,
               room_id: room_id
           }, function(r) {
-              p4.textContent = r.result
+            const isSuccessd= r.status
+            if (!isSuccessd){
+                p4.textContent = "輸入尚未完整，請確認每個欄位皆有輸入"
+                return
+            }
+             
+            p4.textContent = "成功發送 發送內容為：" + r.result
+             
+
           });
       });
       //================================== </submit> ======================================
@@ -198,4 +206,3 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
-
