@@ -195,10 +195,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 p4.textContent = "輸入尚未完整，請確認每個欄位皆有輸入"
                 return
             }
-             
-            p4.textContent = "成功發送 發送內容為：" + r.result
-             
-
+            const newTdElement = document.createElement('td');
+            const newPElement = document.createElement('p');
+            newPElement.textContent = '新的值';
+            newTdElement.appendChild(newPElement);
+            t4.insertAdjacentElement('afterend', newTdElement);
           });
       });
       //================================== </submit> ======================================

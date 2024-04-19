@@ -3,7 +3,7 @@ export function get_InputUsers() {
     const receiverSelectValue = document.getElementById('receiverSelect').value;
     const inputContainer = document.getElementById("inputContainer");
     const inputs = inputContainer.querySelectorAll("input[type='text']");
-    var users = [];
+    const users = [];
     
     if (receiverSelectValue !== 'none'){
         users.push(receiverSelectValue)

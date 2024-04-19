@@ -44,6 +44,7 @@ export async function send_Gift_Requests(userId, userToken, room_id, gift_id, re
             }
             else{
                 msg_list.push("❌錯誤")
+                break
             }
         }
         return msg_list
@@ -59,26 +60,39 @@ export async function send_Gift_Requests(userId, userToken, room_id, gift_id, re
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     
     if (message.type === 'formSubmitted') {
-        var responseText;
+        var responseText = '';
         var isSuccessd = 0
 
         if (!(message.receiver.length === 0) && !(message.quantity <= 0)) {
-            isSuccessd = 1
-            responseText = send_Gift_Requests(message.u_id, message.u_token, message.room_id, message.gift, message.receiver, message.quantity)
+            isSuccessd = 1;
+            send_Gift_Requests(message.u_id, message.u_token, message.room_id, message.gift, message.receiver, message.quantity)
             .then(data => {
-                responseText = data[0]
-                console.log(responseText)
+                responseText = data[0];
+                console.log(responseText);
+        
+                sendResponse({
+                    status: isSuccessd, 
+                    result: data
+                });
+            })
+            .catch(error => {
+                console.error(error);
+                sendResponse({
+                    status: isSuccessd, 
+                    result: 'Error occurred while sending gift requests'
+                });
+            });
+        } else {
+            sendResponse({
+                status: isSuccessd, 
+                result: 'Invalid receiver or quantity'
             });
         }
 
-        sendResponse({
-            status: isSuccessd, 
-            result: responseText
-        });
         return true;
     } 
     
-    else if(message.type === 'get_gifts_list'){
+    else if(message.type === 'get_gifts_list'){ 
         const gift_api = `https://api.goplayone.com/api/gift/v3/list`
         fetch(gift_api, {
             method: 'GET',
