@@ -1,4 +1,4 @@
-
+// ================================= <gift list> =============================
 export function get_InputUsers() {
     const receiverSelectValue = document.getElementById('receiverSelect').value;
     const inputContainer = document.getElementById("inputContainer");

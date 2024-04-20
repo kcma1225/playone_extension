@@ -20,7 +20,14 @@
             <td id="t3">語音頻道狀態：<p id="p3"></p></td>
         </tr>
     </table>
-    <form>
+
+    <select id="selectButton">
+        <option value="form1">送禮物</option>
+        <option value="form2">抽扭蛋</option>
+        <option value="form3">飆評系統</option>
+    </select>
+
+    <form id="form1">
         <div>
             <label for="giftSelect">禮物選擇</label>
             <select id="giftSelect"></select>
@@ -38,14 +45,27 @@
             <input type="number" id="quantityInput" name="quantity" min="1">
             <button id="fillQuantity">10</button>
         </div>
-        <button type="submit" id="submitButton">確認送出</button>
+        <button type="submit" id="submitButton">確認送出</button>    
+        <tr>
+            <td id="t4"><p id="p4"></p></td>
+        </tr>
     </form>
 
-    <tr>
-        <td id="t4"><p id="p4"></p></td>
-    </tr>
+
+    <form id="form2" style="display: none;">
+        <p>test</p>
+    </form>
+
+    <form id="form3" style="display: none;">
+        <p>test</p>
+    </form>
+
 
     <script src="./popup.js" type="module"></script>
     <script src="../assets/js/get_input.js" type="module"></script>
+    <script src="./function1.js" type="module"></script>
+    <script src="./function2.js" type="module"></script>
+    <script src="./function3.js" type="module"></script>
+    
 </body>
 </html>

@@ -1,5 +1,5 @@
 import { get_InputUsers , get_gifts_list , get_quantity} from '../assets/js/get_data.js'
-
+import { form1_f } from './function1.js'
 
 //dom tree
 //p tag
@@ -13,6 +13,7 @@ const t2 = document.getElementById('t2')
 const t3 = document.getElementById('t3')
 const t4 = document.getElementById('t4') 
 //form tag
+const selectButton = document.getElementById('selectButton');
 const form = document.querySelector('form')
 const giftSelect = document.getElementById("giftSelect");
 const receiverSelect = document.getElementById("receiverSelect");
@@ -31,6 +32,7 @@ p1.textContent = "非PLAYONE網站，無法使用"
 p1.style.color = fail_color
 t2.style.display = 'none'
 t3.style.display = 'none'
+selectButton.style.display = 'none'
 giftSelect.innerHTML = '';
 
 
@@ -91,117 +93,25 @@ document.addEventListener('DOMContentLoaded', function () {
         p3.textContent = "已進入語音頻道"
         p3.style.color = success_color
         //--------------------------------------------------
-
+        selectButton.style.display = 'block'
         form.style.display = 'block'
+        form1_f(cookiesMap,room_id)
         
-        // ================================= <gift list> =============================
-        chrome.runtime.sendMessage({
-          type: 'get_gifts_list',
-          u_id: cookiesMap['USER_ID'].value,
-          u_token: cookiesMap['USER_TOKEN'].value
-        }, function(r) {
-          
-          r.result.forEach(function(gift){
-            var option = document.createElement('option');
-            option.value = gift[0].id; // 設置選項的值為禮物的id
-            option.textContent = gift[0].name; // 設置選項的顯示文字為禮物的名稱
-            giftSelect.appendChild(option); // 將選項新增到select元素中
-        })
-      });
-
-        // ================================= </gift list> =============================
-
-
-
-        // ================================= <receiver list> =============================
-        chrome.runtime.sendMessage({
-          type: 'get_members_list',
-          room_id: room_id,
-          u_id: cookiesMap['USER_ID'].value,
-          u_token: cookiesMap['USER_TOKEN'].value
-
-        }, function(r) {
-            for (let member of r.result){
-              var option = document.createElement('option');
-              option.value = member.user_id; // 設置選項的值為禮物的id
-              option.textContent = member.nickname; // 設置選項的顯示文字為禮物的名稱
-              receiverSelect.appendChild(option); // 將選項新增到select元素中
-            }
-          
-      });
-
-        document.getElementById("addInputButton").addEventListener("click", function() {
-          var inputContainer = document.getElementById("inputContainer");
-          var newInput = document.createElement("input");
-          newInput.type = "text";
-          newInput.placeholder = "輸入ID";
-      
-          // 創建刪除按鈕
-          var deleteButton = document.createElement("button");
-          deleteButton.textContent = "刪除";
-          deleteButton.classList.add("delete");
-          deleteButton.addEventListener("click", function() {
-              inputContainer.removeChild(newInput);
-              inputContainer.removeChild(deleteButton);
-          });
-      
-          inputContainer.appendChild(newInput);
-          inputContainer.appendChild(deleteButton);
-      });
-      
-         // ================================= </receiver list> ==============================
+     
+        selectButton.addEventListener('change', function() {
+            const selectedValue = selectButton.value;
+            
+            // cancel
+            const currentForm = document.querySelector('form:not([style="display: none;"])');
+            currentForm.style.display = 'none';
+            
+            // display
+            const selectedForm = document.getElementById(selectedValue);
+            selectedForm.style.display = 'block';
+        });
 
         
-
-         // ================================= <quantity> ==============================
-
-         
-         // 添加點擊事件處理程序
-         fillQuantityButton.addEventListener("click", function(event) {
-             // 將數量設置為10
-             event.preventDefault()
-             quantityInput.value = "10";
-         });
-         // ================================= </quantity> ==============================
-
-
-
-
-         //================================== <submit> ======================================
-         document.getElementById('submitButton').addEventListener('click', function(event) {
-          // 防止表單默認提交行為
-          event.preventDefault();
-  
-          // 獲取表單中的資料
-          const giftSelectValue = document.getElementById('giftSelect').value;
-          const receiverSelectValue = document.getElementById('receiverSelect').value;
-          const quantityInputValue = document.getElementById('quantityInput').value;
-          
-
-
-          // 發送訊息給 background.js
-          chrome.runtime.sendMessage({
-              type: 'formSubmitted',
-              gift: get_gifts_list(),
-              receiver: get_InputUsers(),
-              quantity: get_quantity(),
-              
-              u_id: cookiesMap['USER_ID'].value,
-              u_token: cookiesMap['USER_TOKEN'].value,
-              room_id: room_id
-          }, function(r) {
-            const isSuccessd= r.status
-            if (!isSuccessd){
-                p4.textContent = "輸入尚未完整，請確認每個欄位皆有輸入"
-                return
-            }
-            const newTdElement = document.createElement('td');
-            const newPElement = document.createElement('p');
-            newPElement.textContent = '新的值';
-            newTdElement.appendChild(newPElement);
-            t4.insertAdjacentElement('afterend', newTdElement);
-          });
-      });
+        
       //================================== </submit> ======================================
         
     });

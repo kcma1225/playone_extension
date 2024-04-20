@@ -1,0 +1,1 @@
+import { get_InputUsers , get_gifts_list , get_quantity} from '../assets/js/get_data.js'
