@@ -1,7 +1,6 @@
 import { get_InputUsers , get_gifts_list , get_quantity} from '../assets/js/get_data.js'
 
 //form tag
-const selectButton = document.getElementById('selectButton');
 const form = document.querySelector('form')
 const giftSelect = document.getElementById("giftSelect");
 const receiverSelect = document.getElementById("receiverSelect");

@@ -108,3 +108,21 @@ input[type="text"] {
 #inputContainer {
     margin-bottom: 20px;
 }
+
+  /* Add your CSS styles here */
+#dynamic-table {
+    width: 50%; /* Adjust the width of the table */
+    border-collapse: collapse;
+    margin-bottom: 20px; /* Add some space below the table */
+  }
+#dynamic-table th, #dynamic-table td {
+    border: 1px solid #ddd;
+    padding: 4px; /* Adjust the padding */
+    text-align: left;
+  }
+.button-container {
+    margin-bottom: 10px; /* Add some space below the button container */
+  }
+.test-button {
+    margin-right: 10px; /* Adjust the margin */
+  }
