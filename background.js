@@ -137,4 +137,31 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
         return true;
     }
+
+    else if(message.type === 'get_gache_message'){ 
+        const room_id = message.room_id
+        const gift_api = `https://api.goplayone.com/api/voice_room/v1/last_messages?room_id=${room_id}`
+        fetch(gift_api, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'User-Id': message.u_id,
+              'User-Token': message.u_token
+            }
+          })
+        .then(response => response.json())
+        .then(data => {
+            const item_list = []
+            let index = 0
+            for (let i of data.data){
+                item_list[index] = [{'name':i.name, 'id':i.id, 'price':i.price}];
+                index++
+             }
+            sendResponse ({result: item_list})
+        })
+        .catch(error => sendResponse({result: error.message}));
+
+        
+        return true;
+    } 
 });

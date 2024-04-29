@@ -1,6 +1,19 @@
 const displaytable = document.getElementById("dynamic-table-body");
 
-export function form3_f(time, name, quantity, nickname) {
+export function form3_f(cookiesMap,room_id) {
+  chrome.runtime.sendMessage({
+    type: 'get_gache_message',
+    u_id: cookiesMap['USER_ID'].value,
+    u_token: cookiesMap['USER_TOKEN'].value
+  }, function(r) {
+    
+    r.result.forEach(function(msg){
+      var option = document.createElement('option  ');
+      option.value = gift[0].id; 
+      option.textContent = gift[0].name; 
+      giftSelect.appendChild(option); 
+    })
+  });
     var newRow = displaytable.insertRow(); // Insert a new row
     var timeCell = newRow.insertCell(0); // Insert cells into the row
     var nameCell = newRow.insertCell(1);
@@ -11,6 +24,7 @@ export function form3_f(time, name, quantity, nickname) {
     nameCell.textContent = name;
     quantityCell.textContent = quantity;
     nicknameCell.textContent = nickname;
+    
   }
 
   export function updateTopDate() {

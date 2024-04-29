@@ -96,11 +96,10 @@ document.addEventListener('DOMContentLoaded', function () {
         selectButton.style.display = 'block'
         form.style.display = 'block'
         form1_f(cookiesMap,room_id)
-        for (let i=0; i<20; i++){
-          form3_f("10:00", "Product A", 5, "User123");
-        }
-        form3_f("tesing", "Product A", 5, "User123");
-        updateTopDate()
+        form3_f()
+        
+
+
         selectButton.addEventListener('change', function() {
             const selectedValue = selectButton.value;
             
