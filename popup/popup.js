@@ -1,6 +1,7 @@
-import { get_InputUsers , get_gifts_list , get_quantity} from '../assets/js/get_data.js'
 import { form1_f } from './function1.js'
-import { form3_f, updateTopDate } from './function3.js'
+import { form2_f } from './function2.js'
+import { form3_f } from './function3.js'
+
 //dom tree
 //p tag
 const p1 = document.getElementById('p1')
@@ -96,9 +97,8 @@ document.addEventListener('DOMContentLoaded', function () {
         selectButton.style.display = 'block'
         form.style.display = 'block'
         form1_f(cookiesMap,room_id)
-        form3_f()
-        
-
+        form2_f(cookiesMap,room_id)
+        form3_f(cookiesMap,room_id)
 
         selectButton.addEventListener('change', function() {
             const selectedValue = selectButton.value;

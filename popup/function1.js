@@ -22,7 +22,7 @@ export function form1_f(cookiesMap,room_id){
         r.result.forEach(function(gift){
         var option = document.createElement('option');
         option.value = gift[0].id; 
-        option.textContent = gift[0].name; 
+        option.textContent = gift[0].name + "💎" + gift[0].price; 
         giftSelect.appendChild(option); 
     })
     });

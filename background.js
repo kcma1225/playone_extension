@@ -151,12 +151,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
           })
         .then(response => response.json())
         .then(data => {
-            const item_list = []
-            let index = 0
-            for (let i of data.data){
-                item_list[index] = [{'name':i.name, 'id':i.id, 'price':i.price}];
-                index++
-             }
+            
             sendResponse ({result: item_list})
         })
         .catch(error => sendResponse({result: error.message}));

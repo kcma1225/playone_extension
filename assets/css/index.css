@@ -123,6 +123,26 @@ input[type="text"] {
 .button-container {
     margin-bottom: 10px; /* Add some space below the button container */
   }
-.test-button {
-    margin-right: 10px; /* Adjust the margin */
-  }
+
+
+
+.msg-list-button {
+    background-color: #4CAF50; /* 設置按鈕背景顏色 */
+    border: none; /* 移除按鈕邊框 */
+    color: white; /* 設置按鈕文字顏色 */
+    padding: 15px 32px; /* 設置按鈕內間距 */
+    text-align: center; /* 將文字置中 */
+    text-decoration: none; /* 移除文字下劃線 */
+    display: inline-block;
+    font-size: 16px; /* 設置文字大小 */
+    margin: 4px 2px;
+    cursor: pointer; /* 設置鼠標應變為手指形狀 */
+    border-radius: 10px; /* 設置按鈕圓角 */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* 添加按鈕陰影 */
+    transition: 0.3s; /* 添加按鈕 hover 效果 */
+}
+
+.msg-list-button:hover {
+    background-color: #347738; /* 按鈕 hover 時改變背景顏色 */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* 按鈕 hover 時改變陰影 */
+}
