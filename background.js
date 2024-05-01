@@ -119,8 +119,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     } 
 
     else if(message.type === 'get_members_list'){
-        const room_id = message.room_id
-        const room_url =  `https://msg.goplayone.com/api/voice_room/v1/supervisor?room_id=${room_id}`;
+        const room_url =  `https://msg.goplayone.com/api/voice_room/v1/supervisor?room_id=${message.room_id}`;
         fetch(room_url, {
             method: 'GET',
             headers: {
@@ -138,10 +137,9 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
         return true;
     }
 
-    else if(message.type === 'get_gache_message'){ 
-        const room_id = message.room_id
-        const gift_api = `https://api.goplayone.com/api/voice_room/v1/last_messages?room_id=${room_id}`
-        fetch(gift_api, {
+    else if(message.type === 'get_gacha_message'){
+        const msg_api =  `https://api.goplayone.com/api/voice_room/v1/last_messages?room_id=${message.room_id}`;
+        fetch(msg_api, {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json',
@@ -151,12 +149,23 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
           })
         .then(response => response.json())
         .then(data => {
-            
-            sendResponse ({result: item_list})
+            const gacha_list = []
+            data.data.forEach((item) => {
+                if (item.format === "text"){
+                    var items = {
+                        message_id: message.message_id,
+                        update_time: item.update_time,
+                        nickname: item.nickname,
+                        gift_name: item.gift_name,
+                        number: item.number
+                    }
+                    gacha_list.push(items);
+                }
+        });
+            sendResponse({result: gacha_list})
         })
         .catch(error => sendResponse({result: error.message}));
 
-        
         return true;
-    } 
+    }
 });

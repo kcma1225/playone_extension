@@ -31,24 +31,6 @@ document.addEventListener("DOMContentLoaded", function() {
             infoBox.style.display = 'none';
         });
     });
-    fetch(api_me, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'User-Token': u_token,
-          'User-Id': u_id
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('u_id').innerText = u_id;
-        document.getElementById('u_token').innerText = u_token;
-        document.getElementById('room_id').innerText = room_id;
-        })
-        .catch(error => console.error('Error:', error));
-
-
-
 
     fetch(api_msg, {
         method: 'GET',

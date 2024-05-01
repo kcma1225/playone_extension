@@ -7,6 +7,7 @@ export function form2_f(cookiesMap,room_id){
         event.preventDefault();
        // 獲取 localStorage 中存儲的所有鍵值對
        var text = ""
+       
         for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i);
             const value = localStorage.getItem(key);
