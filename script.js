@@ -1,5 +1,23 @@
 import { time_formatter } from './assets/js/get_data.js'
 
+function localStorageChecker(argument) { //True - replicate | False - not replicate, can put in
+    for (var key in localStorage) {
+      if (localStorage.hasOwnProperty(key)) {
+        var value = localStorage.getItem(key);
+        if (value === argument) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  function saveToLocalStorage(key, data) {
+    var jsonData = JSON.stringify(data);
+    
+    localStorage.setItem(key, jsonData);
+  }
+
 document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
     const u_id = urlParams.get('user_id');
@@ -8,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const api_msg = `https://api.goplayone.com/api/voice_room/v1/last_messages?room_id=${room_id}`
     const api_me = `https://api.goplayone.com/api/user/v1/info/me`
 
-    // ----- display information about profile
+    // ----- display information about profile--------------------------------
     const idItem = document.querySelector('.menu-item[data-info="ID"]');
     const tokenItem = document.querySelector('.menu-item[data-info="Token"]');
     const roomItem = document.querySelector('.menu-item[data-info="Room"]');
@@ -31,9 +49,8 @@ document.addEventListener("DOMContentLoaded", function() {
             infoBox.style.display = 'none';
         });
     });
-    // -------------------------
-
-
+    // -----------------------------------------------------------------------
+    
     // Refreshing by the time,
     setInterval(async () => {
         fetch(api_msg, {
@@ -47,20 +64,31 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(response => response.json())
             .then(data => {
                 data.data.forEach((item) => {
-                    if (item.format == 'gacha'){
+                    if (item.format == 'text'){
                         const gacha_list = []
                         const time = time_formatter(item.update_time).date + " - " +time_formatter(item.update_time).time
                         var items = {
-                            message_id: message.message_id,
+                            message_id: item.message_id,
                             update_time: time,
                             nickname: item.nickname,
                             gift_name: item.gift_name,
                             number: item.number
                         }
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                        <td>${time}</td>
+                        <td>${items.nickname}</td>
+                        <td>${item.gift_name}</td>
+                        <td>${item.number}</td>
+                        `;
+                        document.getElementById('table-body').appendChild(row);
                         gacha_list.push(items)
                     }
                 });
             })
             .catch(error => console.error('Error:', error)); 
+             
+            
+            
     },3000);
 });
